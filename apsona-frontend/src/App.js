@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Notes from "./components/Notes";
+import TagView from "./components/TagView";
+import ArchivedNotes from "./components/ArchivedNotes";
+import TrashedNotes from "./components/TrashedNotes";
+import ReminderView from "./components/ReminderView";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <ProtectedRoute path="/archived" component={ArchivedNotes} />
+        <ProtectedRoute path="/trashed" component={TrashedNotes} />
+        <ProtectedRoute path="/tag/:tag" component={TagView} />
+        <ProtectedRoute path="/reminders" component={ReminderView} />
+        <ProtectedRoute path="/" component={Notes} />
+      </Switch>
+    </Router>
   );
 }
 
