@@ -5,7 +5,7 @@ import Note from "./Note";
 import CreateNote from "./CreateNote";
 import SearchBar from "./SearchBar";
 
-function Notes() {
+const Notes = () => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
@@ -38,6 +38,6 @@ function Notes() {
       </div>
     </div>
   );
-}
+};
 
 export default Notes;

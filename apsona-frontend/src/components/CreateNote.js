@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 
-function CreateNote({ setNotes }) {
+const CreateNote = ({ setNotes }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [tags, setTags] = useState([]);
@@ -53,8 +53,10 @@ function CreateNote({ setNotes }) {
         <input
           type="text"
           placeholder="Tags (comma separated)"
-          value={tags}
-          onChange={(e) => setTags(e.target.value.split(","))}
+          value={tags.join(",")}
+          onChange={(e) =>
+            setTags(e.target.value.split(",").map((tag) => tag.trim()))
+          }
         />
         <p>Choose color:</p>
         <input
@@ -71,6 +73,6 @@ function CreateNote({ setNotes }) {
       </form>
     </div>
   );
-}
+};
 
 export default CreateNote;
